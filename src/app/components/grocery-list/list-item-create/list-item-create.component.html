@@ -1,0 +1,32 @@
+<mat-card>
+    <div class="row">
+        <form (submit)="onAddItem(groceryItemForm)" #groceryItemForm="ngForm">
+            <mat-form-field flex=80>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    [(ngModel)]="model.name"
+                    name="name"
+                    #name="ngModel"
+                    required
+                    minlength="1"
+                    placeholder="Grocery Item"
+                    required>
+                    <mat-error
+                        *ngIf="name.invalid">
+                        Please enter a grocery item.
+                    </mat-error>
+            </mat-form-field>
+
+            <button
+                mat-icon-button
+                [disabled]="!groceryItemForm.form.valid"
+                color="accent"
+                type="submit"
+                aria-label="Create grocery item">
+                <mat-icon>add</mat-icon>
+            </button>
+        </form>
+    </div>
+</mat-card>
