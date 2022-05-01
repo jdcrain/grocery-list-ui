@@ -1,1 +1,7 @@
-<app-list-item-create></app-list-item-create>
+<app-list-item-create (createdListItem)=onCreatedListItem($event)></app-list-item-create>
+
+<ng-container *ngIf="groceryList.groceryListItems">
+    <div *ngFor="let groceryListItem of groceryList.groceryListItems">
+        {{groceryListItem.name}}
+    </div>
+</ng-container>

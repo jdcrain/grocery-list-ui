@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GroceryListItem } from 'src/app/models/grocery-list-item';
 
@@ -8,16 +8,19 @@ import { GroceryListItem } from 'src/app/models/grocery-list-item';
   styleUrls: ['./list-item-create.component.scss']
 })
 export class ListItemCreateComponent {
+  @Output() createdListItem = new EventEmitter<GroceryListItem>();
+
   model = new GroceryListItem();
 
   constructor() { 
   }
 
   onAddItem(form: NgForm) {
-    console.log(form);
     if (form.invalid) {
       return;
     }
+
+    this.createdListItem.emit(this.model);
 
     form.resetForm();
   }
