@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatListModule} from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { GroceryListComponent } from './components/grocery-list/grocery-list.com
     MatIconModule,
     MatFormFieldModule,
     MatCardModule,
+    MatListModule,
     FlexLayoutModule
   ],
   providers: [],

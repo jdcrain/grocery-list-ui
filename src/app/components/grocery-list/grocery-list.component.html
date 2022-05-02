@@ -1,7 +1,13 @@
 <app-list-item-create (createdListItem)=onCreatedListItem($event)></app-list-item-create>
 
 <ng-container *ngIf="groceryList.groceryListItems">
-    <div *ngFor="let groceryListItem of groceryList.groceryListItems">
-        {{groceryListItem.name}}
-    </div>
+    <mat-list>
+        <app-list-item 
+            *ngFor="let groceryListItem of groceryList.groceryListItems"
+            [listItem]="groceryListItem"
+            (editListItem)=onEditedListItem($event)
+            (deleteListItem)=onDeletedListItem($event)
+            fxLayout="row">
+        </app-list-item>
+    </mat-list>
 </ng-container>

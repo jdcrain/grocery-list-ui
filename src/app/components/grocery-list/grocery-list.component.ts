@@ -21,11 +21,46 @@ export class GroceryListComponent implements OnInit {
   }
 
   onCreatedListItem(listItem: GroceryListItem) {
-      this.groceryList.groceryListItems = [...this.groceryList.groceryListItems, listItem];
-      
-      this.groceryListService.updateGroceryList(this.groceryList).subscribe((response: GroceryList) => {
-        this.groceryList = response;
-      })
+    listItem.groceryListId = this.groceryList.id;
+
+    const groceryList: GroceryList = {
+      ...this.groceryList,
+      groceryListItems: [
+        ...this.groceryList.groceryListItems,
+        listItem
+      ]
+    };
+    
+    this.updateGroceryList(groceryList);
   }
 
+  onEditedListItem(listItem: GroceryListItem) {
+    const groceryList: GroceryList = {...this.groceryList}
+
+    let matchingItemIndex = groceryList.groceryListItems
+      .findIndex((item) =>
+        item.id === listItem.id
+      );
+
+    groceryList.groceryListItems[matchingItemIndex] = { ...listItem }
+
+    this.updateGroceryList(groceryList);
+  }
+
+  onDeletedListItem(listItem: GroceryListItem) {
+    const groceryList: GroceryList = {...this.groceryList}
+
+    groceryList.groceryListItems
+      .splice(groceryList.groceryListItems.findIndex((item) => 
+        item.id === listItem.id
+      ), 1);
+
+    this.updateGroceryList(groceryList);
+  }
+
+  updateGroceryList(groceryList: GroceryList) {
+    this.groceryListService.updateGroceryList(groceryList).subscribe((response: GroceryList) => {
+      this.groceryList = response;
+    })
+  }
 }

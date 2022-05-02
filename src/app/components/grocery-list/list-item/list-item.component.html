@@ -1,1 +1,43 @@
-<p>list-item works!</p>
+
+<mat-list-item fxLayout="column">
+    <div fxLayoutAlign="space-between center" style="justify-content: space-between; width: 100%;">
+        <div style="display:flex; flex-direction:column; flex-shrink: 1;">
+            <div *ngIf="isEditing; else nameBlock" flex=66>
+                <mat-form-field fxFlex="100%">
+                    <input
+                        matInput
+                        type="text"
+                        required
+                        #editName
+                        [(ngModel)]="listItem.name"
+                        (blur)="updateItem(listItem)"
+                        (keyup.enter)="editName.blur()"
+                        minlength="1"
+                        placeholder="Grocery Item"
+                        required>
+                </mat-form-field>
+            </div>      
+            <ng-template #nameBlock>
+                <p flex=66>{{listItem.name}}</p>
+            </ng-template>
+        </div>
+        <div flex=33 style="flex-shrink: 0;">
+            <button
+                mat-icon-button
+                (click)="enableEdit()"
+                flex=20
+                color="accent"
+                aria-label="Edit grocery item">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                (click)="deleteItem(listItem)"
+                flex=20
+                color="accent"
+                aria-label="Delete grocery item">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-list-item>
