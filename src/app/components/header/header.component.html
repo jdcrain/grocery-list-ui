@@ -1,1 +1,8 @@
-<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="primary">
+    <span>Grocery List Manager</span>
+    <span fxFlex="1 1 auto"></span>
+
+    <button *ngIf="user" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon (click)="logout.emit()">logout</mat-icon>
+      </button>
+</mat-toolbar>

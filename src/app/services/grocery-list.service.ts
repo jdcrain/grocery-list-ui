@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Subject, Observable, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { GroceryList } from '../models/grocery-list';
-import { GroceryListItem } from '../models/grocery-list-item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class GroceryListService {
-    private groceryList: GroceryList = new GroceryList();
-
-    private groceryListApiUrl: string = "https://localhost:5001/groceryList/"
+    private groceryListApiUrl: string = `${environment.apiUrl}/groceryList/`
+    
     constructor(private http: HttpClient) { }
 
     handleError(error: HttpErrorResponse) {
@@ -27,7 +26,7 @@ export class GroceryListService {
       }
 
     getGroceryList(): Observable<GroceryList> {
-        return this.http.get<GroceryList>(this.groceryListApiUrl + "2");
+        return this.http.get<GroceryList>(this.groceryListApiUrl);
     }
 
     updateGroceryList(groceryList: GroceryList): Observable<GroceryList> {
