@@ -36,13 +36,12 @@
                 </div>
             </mat-form-field>
             <button mat-raised-button type="submit" [disabled]="loading" color="primary" (click)="onLogin()">
-                <mat-spinner *ngIf="loading"></mat-spinner>
                 Login
             </button>
             <button mat-button type="submit" [disabled]="loading" color="accent" (click)="onRegister()">
-                <mat-spinner *ngIf="loading"></mat-spinner>
                 Register
             </button>
+            <mat-spinner *ngIf="loading"></mat-spinner>
             <mat-error *ngIf="error">{{error}}</mat-error>
         </form>
     </mat-card-content>

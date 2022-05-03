@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     if (this.register) {
       this.userService.create(this.formControls.username.value, this.formControls.password.value)
         .pipe(
-          mergeMap(user => this.authenticationService.login(user.username, this.formControls.username.value))
+          mergeMap(user => this.authenticationService.login(user.username, this.formControls.password.value))
         )
         .subscribe(() => {
             this.router.navigate([this.returnUrl]);
