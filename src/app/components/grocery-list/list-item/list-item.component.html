@@ -1,7 +1,7 @@
 
 <mat-list-item fxLayout="column">
-    <div fxLayoutAlign="space-between center" style="justify-content: space-between; width: 100%;">
-        <div style="display:flex; flex-direction:column; flex-shrink: 1;">
+    <div fxLayout="row" fxFlexFill>
+        <div fxLayout="column" fxFlex="0 1 66" fxLayoutAlign="start start">
             <div *ngIf="isEditing; else nameBlock" flex=66>
                 <mat-form-field fxFlex="100%">
                     <input
@@ -21,7 +21,8 @@
                 <p flex=66>{{listItem.name}}</p>
             </ng-template>
         </div>
-        <div flex=33 style="flex-shrink: 0;">
+        <span fxFlex="1 1 auto"></span>
+        <div fxFlex="0 0 auto">
             <button
                 mat-icon-button
                 (click)="enableEdit()"
