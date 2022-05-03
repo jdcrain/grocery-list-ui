@@ -20,6 +20,15 @@ export class GroceryListComponent implements OnInit {
     })
   }
 
+  onClearList(): void {
+    const groceryList: GroceryList = {
+      ...this.groceryList,
+      groceryListItems: []
+    };
+    
+    this.updateGroceryList(groceryList);
+  }
+
   onCreatedListItem(listItem: GroceryListItem) {
     listItem.groceryListId = this.groceryList.id;
 

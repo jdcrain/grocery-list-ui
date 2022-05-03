@@ -1,6 +1,11 @@
 <app-list-item-create (createdListItem)=onCreatedListItem($event)></app-list-item-create>
 
 <ng-container *ngIf="groceryList.groceryListItems">
+    <div fxLayout="column" fxLayoutAlign="start end" class="clear-list">
+        <button mat-raised-button type="submit" [disabled]="loading" color="warn" (click)="onClearList()">
+            Clear List
+        </button>
+    </div>
     <mat-list>
         <app-list-item 
             *ngFor="let groceryListItem of groceryList.groceryListItems"
